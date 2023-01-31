@@ -1,0 +1,36 @@
+<body>
+    {{> mainContainer }}
+</body>
+
+<template name="mainContainer">
+    <div class="container">
+        <div class="page-header">
+            <div class="page-header-left">
+                <img class="logo" src="/logo.png" alt="logo"/>
+                <h1 class="title">{{> logo }}</h1>
+            </div>
+            <div class="page-header-right">{{> form }}</div>
+        </div>
+        {{#if isLoading}}
+            <div class="loading">loading exports...</div>
+        {{else}}
+            {{#if hasExports}}
+                {{> exportsTable exports=exports }}
+            {{else}}
+                <div class="alert alert-info">
+                    No export found. Click on "Export" to create a new export.
+                </div>
+            {{/if}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="form">
+    <form id="export-form-insert">
+        <button type="submit" class="btn btn-primary">Export</button>
+    </form>
+</template>
+
+<template name="logo">
+    <span>lem<span class="logo-suffix">export</span></span>
+</template>
